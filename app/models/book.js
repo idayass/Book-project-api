@@ -1,7 +1,11 @@
 const mongoose = require('mongoose')
 
 const bookSchema = new mongoose.Schema({
-  name: {
+  isbn: {
+    type: String,
+    required: true
+  },
+  title: {
     type: String,
     required: true
   },
@@ -9,18 +13,31 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  year: {
+  publication_year: {
     type: Number,
-    required: false
+    required: true
   },
-  isbn: {
+  publisher: {
     type: String,
     required: true
   },
-  url: {
-    type: String
+  image_url_s: {
+    type: String,
+    required: true
   },
-  number_of_copies: {
+  image_url_m: {
+    type: String,
+    required: true
+  },
+  image_url_l: {
+    type: String,
+    required: true
+  },
+  copies: {
+    type: Number,
+    required: true
+  },
+  available: {
     type: Number,
     required: true
   }
