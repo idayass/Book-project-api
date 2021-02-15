@@ -32,9 +32,6 @@ const router = express.Router()
 router.get('/books', (req, res, next) => {
   Book.find()
     .then(books => {
-      // `examples` will be an array of Mongoose documents
-      // we want to convert each one to a POJO, so we use `.map` to
-      // apply `.toObject` to each one
       return books.map(book => book.toObject())
     })
     // respond with status 200 and JSON of the examples
@@ -62,26 +59,17 @@ router.post('/books', (req, res, next) => {
     .then(book => {
       res.status(201).json({ book: book.toObject() })
     })
-    // if an error occurs, pass it off to our error handler
-    // the error handler needs the error message and the `res` object so that it
-    // can send an error message back to the client
     .catch(next)
 })
 
 // UPDATE
 // PATCH /examples/5a7db6c74d55bc51bdf39793
 router.patch('/books/:id', removeBlanks, (req, res, next) => {
-  // if the client attempts to change the `owner` property by including a new
-  // owner, prevent that by deleting that key/value pair
-
+  console.log(req.params.id)
   Book.findById(req.params.id)
     .then(handle404)
     .then(book => {
-      // pass the `req` object and the Mongoose record to `requireOwnership`
-      // it will throw an error if the current user isn't the owner
-
-      // pass the result of Mongoose's `.update` to the next `.then`
-      return book.update(req.body.book)
+      return book.updateOne(req.body.book)
     })
     // if that succeeded, return 204 and no JSON
     .then(() => res.sendStatus(204))
@@ -91,13 +79,10 @@ router.patch('/books/:id', removeBlanks, (req, res, next) => {
 
 // DESTROY
 // DELETE /examples/5a7db6c74d55bc51bdf39793
-router.delete('/books/:id', requireToken, (req, res, next) => {
+router.delete('/books/:id', (req, res, next) => {
   Book.findById(req.params.id)
     .then(handle404)
     .then(book => {
-      // throw an error if current user doesn't own `example`
-    //  requireOwnership(req, product)
-      // delete the example ONLY IF the above didn't throw
       book.remove()
     })
     // send back 204 and no content if the deletion succeeded

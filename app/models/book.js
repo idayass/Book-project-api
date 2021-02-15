@@ -19,19 +19,19 @@ const bookSchema = new mongoose.Schema({
   },
   publisher: {
     type: String,
-    required: true
+    required: false
   },
   image_url_s: {
     type: String,
-    required: true
+    required: false
   },
   image_url_m: {
     type: String,
-    required: true
+    required: false
   },
   image_url_l: {
     type: String,
-    required: true
+    required: false
   },
   copies: {
     type: Number,
@@ -39,7 +39,7 @@ const bookSchema = new mongoose.Schema({
   },
   available: {
     type: Number,
-    required: true
+    required: false
   }
 }, {
   timestamps: true

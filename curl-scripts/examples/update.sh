@@ -3,14 +3,13 @@
 API="http://localhost:4741"
 URL_PATH="/examples"
 
-curl "${API}${URL_PATH}/${ID}" \
+curl "http://localhost:4741/books/6029c6cd835d2551e54c0a72" \
   --include \
   --request PATCH \
   --header "Content-Type: application/json" \
---header "Authorization: Bearer ${TOKEN}" \
 --data '{
-    "example": {
-      "text": "'"${TEXT}"'"
+    "book": {
+      "title": "newTitle"
     }
   }'
 
