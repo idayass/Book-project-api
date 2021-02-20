@@ -1,5 +1,5 @@
 
-## HOW TO USE
+## HOW TO USE:
 
 1. Clone the repo locally: https://github.com/idayass/Book-project-api.
 1. Install dependencies with `npm install`.
