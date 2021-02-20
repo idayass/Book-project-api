@@ -1,7 +1,7 @@
 
 ## HOW TO USE:
 
-1. Clone the repo locally: https://github.com/idayass/Book-project-api.
+1. Clone the repo locally:  https://github.com/idayass/server.
 1. Install dependencies with `npm install`.
 1. Ensure that you have `nodemon` installed by running `npm install -g nodemon`.
 1. Ensure the API server is functioning properly by running `npm run server`.
